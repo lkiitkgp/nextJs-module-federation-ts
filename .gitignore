@@ -1,3 +1,4 @@
-node_modules/
-
-.next
+remote-app/node_modules
+host-app/node_modules
+remote-app/.next
+host-app/.next

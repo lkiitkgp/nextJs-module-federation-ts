@@ -27,4 +27,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default dynamic(() => Promise.resolve(Home), { ssr: false });
