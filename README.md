@@ -14,7 +14,7 @@ Clone the project
 Go to the remote-app directory
 
 ```bash
-  cd my-project
+  cd remote-app
 ```
 
 Install dependencies
