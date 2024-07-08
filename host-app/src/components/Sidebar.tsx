@@ -9,7 +9,7 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ items, onSelect, selectedItem }) => {
   return (
-    <div className="bg-gray-200 p-4 w-64 h-screen fixed top-16"> {/* Adjusted top to account for header */}
+    <div className="bg-gray-200 p-4 w-64 h-screen fixed top-16">
       {items.map(item => (
         <button
           key={item.id}

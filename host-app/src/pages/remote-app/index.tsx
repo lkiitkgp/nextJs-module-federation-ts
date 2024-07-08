@@ -1,8 +1,8 @@
-// pages/remote-app.tsx
+// pages/remote-app/index.tsx
 import dynamic from 'next/dynamic';
 import React, { useState } from 'react';
-import ErrorBoundary from '../components/ErrorBoundary';
 import Link from 'next/link';
+import ErrorBoundary from '@/components/ErrorBoundary';
 
 const RemoteComponent = dynamic(() => import('remoteApp/RemoteComponent'), {
   ssr: false,
