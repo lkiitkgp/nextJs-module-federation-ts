@@ -8,6 +8,11 @@ const nextConfig = {
         filename: 'static/chunks/remoteEntry.js',
         exposes: {
           './RemoteComponent': './src/components/RemoteComponent.tsx',
+          './Sidebar': './src/components/Sidebar',
+          './ContentA': './src/pages/ContentA',
+          './ContentB': './src/pages/ContentB',
+          './sidebarItems': './src/components/sidebarItems'
+          
         },
         shared: {
           react: {
