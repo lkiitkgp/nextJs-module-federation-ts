@@ -6,6 +6,7 @@ import React from "react";
 const Header: React.FC = () => {
   const router = useRouter();
   const isRemoteApp = router.pathname.startsWith("/remote-app");
+  const isRemoteReactApp = router.pathname.startsWith("/remote-react-app");
 
   return (
     <header className="bg-gray-800 text-white p-4 fixed w-full z-10">
@@ -30,7 +31,7 @@ const Header: React.FC = () => {
           <li>
             <Link
               href="/remote-react-app"
-              className={isRemoteApp ? "font-bold underline" : ""}
+              className={isRemoteReactApp ? "font-bold underline" : ""}
             >
               React App
             </Link>
