@@ -1,27 +1,26 @@
-import { NextFederationPlugin } from '@module-federation/nextjs-mf';
+import { NextFederationPlugin } from "@module-federation/nextjs-mf";
 
 const nextConfig = {
   webpack(config, options) {
     config.plugins.push(
       new NextFederationPlugin({
-        name: 'remoteApp',
-        filename: 'static/chunks/remoteEntry.js',
+        name: "remoteApp",
+        filename: "static/chunks/remoteEntry.js",
         exposes: {
-          './RemoteComponent': './src/components/RemoteComponent.tsx',
-          './Sidebar': './src/components/Sidebar',
-          './ContentA': './src/pages/ContentA',
-          './ContentB': './src/pages/ContentB',
-          './sidebarItems': './src/components/sidebarItems'
-          
+          "./RemoteComponent": "./src/components/RemoteComponent.tsx",
+          "./Sidebar": "./src/components/Sidebar",
+          "./ContentA": "./src/pages/ContentA",
+          "./ContentB": "./src/pages/ContentB",
+          "./sidebarItems": "./src/components/sidebarItems",
         },
         shared: {
           react: {
             singleton: true,
-            requiredVersion: false
+            requiredVersion: false,
           },
-          'react-dom': {
+          "react-dom": {
             singleton: true,
-            requiredVersion: false
+            requiredVersion: false,
           },
         },
       })
@@ -31,11 +30,11 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/_next/static/chunks/remoteEntry.js',
+        source: "/_next/static/chunks/remoteEntry.js",
         headers: [
           {
-            key: 'Access-Control-Allow-Origin',
-            value: '*',
+            key: "Access-Control-Allow-Origin",
+            value: "*",
           },
         ],
       },
