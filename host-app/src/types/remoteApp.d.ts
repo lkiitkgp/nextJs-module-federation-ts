@@ -1,6 +1,11 @@
-// src/types/remoteApp.d.ts
 declare module 'remoteApp/RemoteComponent' {
-    const RemoteComponent: React.ComponentType;
-    export default RemoteComponent;
+  import { ComponentType } from 'react';
+
+  interface RemoteComponentProps {
+    value: number;
+    onIncrement: () => void;
   }
-  
+
+  const RemoteComponent: ComponentType<RemoteComponentProps>;
+  export default RemoteComponent;
+}
