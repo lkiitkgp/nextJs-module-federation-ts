@@ -12,9 +12,15 @@ module.exports = {
     },
   },
   cache: false,
+<<<<<<< HEAD
   output: {
     publicPath: "http://localhost:3000/",
   },
+=======
+    output: {
+      publicPath: "http://localhost:3000/",
+    },
+>>>>>>> d76bac2 (add layout)
   mode: "development",
   devtool: "source-map",
   optimization: {
@@ -34,9 +40,15 @@ module.exports = {
     },
     historyApiFallback: true,
   },
+<<<<<<< HEAD
   //   output: {
   //     publicPath: "auto",
   //   },
+=======
+  // output: {
+  //   publicPath: "auto",
+  // },
+>>>>>>> d76bac2 (add layout)
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json", ".mjs"],
   },
@@ -70,7 +82,7 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "reactHost",
+      name: "host",
       filename: "remoteEntry.js",
       remotes: {
         remoteApp:
@@ -78,16 +90,16 @@ module.exports = {
         reactApp: "reactApp@http://localhost:3002/remoteEntry.js",
       },
       exposes: {
-        // "./Sidebar": "./src/components/Sidebar",
+        "./TemplatePage": "./src/pages/TemplatePage",
       },
       shared: {
         // ...deps,
         // react: {
-        //   requiredVersion: false,
+        //   requiredVersion: '18.3.1',
         //   singleton: true,
         // },
         // "react-dom": {
-        //   requiredVersion: false,
+        //   requiredVersion: '18.3.1',
         //   singleton: true,
         // },
       },

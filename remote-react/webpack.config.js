@@ -74,15 +74,15 @@ module.exports = {
         "./ContentD": "./src/pages/ContentD",
       },
       shared: {
-        ...deps,
-        react: {
-          requiredVersion: false,
-          singleton: true,
-        },
-        "react-dom": {
-          requiredVersion: false,
-          singleton: true,
-        },
+        // ...deps,
+        // react: {
+        //   requiredVersion: '18.3.1',
+        //   singleton: true,
+        // },
+        // "react-dom": {
+        //   requiredVersion: '18.3.1',
+        //   singleton: true,
+        // },
       },
     }),
     new HtmlWebpackPlugin({

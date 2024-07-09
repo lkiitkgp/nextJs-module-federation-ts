@@ -21,3 +21,8 @@ declare module "reactApp/ReactComponent" {
   const ReactComponent: ComponentType<ReactComponentProps>;
   export default ReactComponent;
 }
+
+declare module "remoteApp/RemoteApp" {
+  const RemoteApp: React.ComponentType;
+  export default RemoteApp;
+}

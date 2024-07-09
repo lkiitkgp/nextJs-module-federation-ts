@@ -15,16 +15,20 @@ const nextConfig = {
           "./ContentA": "./src/pages/ContentA",
           "./ContentB": "./src/pages/ContentB",
           "./sidebarItems": "./src/components/sidebarItems",
+          "./RemoteApp": "./src/pages/remoteapp/index"
+        },
+        remotes: {
+          host : "host@http://localhost:3000/remoteEntry.js",
         },
         shared: {
-          react: {
-            singleton: true,
-            requiredVersion: false,
-          },
-          "react-dom": {
-            singleton: true,
-            requiredVersion: false,
-          },
+        //   react: {
+        //     singleton: true,
+        //     requiredVersion: '18.3.1',
+        //   },
+        //   "react-dom": {
+        //     singleton: true,
+        //     requiredVersion: '18.3.1',
+        //   },
         },
       })
     );

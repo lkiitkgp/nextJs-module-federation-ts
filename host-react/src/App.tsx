@@ -4,6 +4,7 @@ import "./App.css";
 
 const ReactComponent = React.lazy(() => import("reactApp/ReactComponent"));
 const RemoteComponent = React.lazy(() => import("remoteApp/RemoteComponent"));
+// const RemoteApp = React.lazy(() => import("remoteApp/RemoteApp"));
 
 function App() {
   const [value, setValue] = useState(0);
@@ -15,8 +16,9 @@ function App() {
   };
 
   return (
-    <Suspense>
+    <Suspense fallback={<div>Loading...</div>}>
       <h1>React host</h1>
+      {/* <RemoteApp /> */}
       <ReactComponent value={value} onIncrement={handleIncrement} />
       <RemoteComponent value={value1} onIncrement={handleIncrement} />
     </Suspense>
