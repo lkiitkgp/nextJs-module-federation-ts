@@ -5,3 +5,5 @@ remote-app/.next
 host-app/.next
 remote-react/dist
 remote-react/node_modules
+host-react/dist
+host-react/node_modules
