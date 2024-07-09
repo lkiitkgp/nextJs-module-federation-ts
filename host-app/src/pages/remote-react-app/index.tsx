@@ -1,15 +1,15 @@
 // pages/remote-app.tsx
 import dynamic from "next/dynamic";
 import React, { useState } from "react";
-import ErrorBoundary from "../components/ErrorBoundary";
+import ErrorBoundary from "../../components/ErrorBoundary";
 import Link from "next/link";
 
-const RemoteComponent = dynamic(() => import("remoteApp/RemoteComponent"), {
+const ReactComponent = dynamic(() => import("reactApp/ReactComponent"), {
   ssr: false,
   loading: () => <p>Loading...</p>,
 });
 
-const RemoteAppPage: React.FC = () => {
+const ReactAppPage: React.FC = () => {
   const [value, setValue] = useState(0);
 
   const handleIncrement = () => {
@@ -20,10 +20,10 @@ const RemoteAppPage: React.FC = () => {
     <ErrorBoundary>
       <div>
         <Link href="/">Back to Home</Link>
-        <RemoteComponent value={value} onIncrement={handleIncrement} />
+        <ReactComponent value={value} onIncrement={handleIncrement} />
       </div>
     </ErrorBoundary>
   );
 };
 
-export default dynamic(() => Promise.resolve(RemoteAppPage), { ssr: false });
+export default dynamic(() => Promise.resolve(ReactAppPage), { ssr: false });

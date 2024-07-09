@@ -5,6 +5,11 @@ const path = require("path");
 const deps = require("./package.json").dependencies;
 
 module.exports = {
+  entry: {
+    app: {
+      import: "./src/index",
+    },
+  },
   output: {
     publicPath: "http://localhost:3002/",
   },
@@ -25,6 +30,7 @@ module.exports = {
       "Access-Control-Allow-Headers":
         "X-Requested-With, content-type, Authorization",
     },
+    historyApiFallback: true,
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json", ".mjs"],
@@ -63,6 +69,9 @@ module.exports = {
       filename: "remoteEntry.js",
       exposes: {
         "./ReactComponent": "./src/components/ReactComponent.tsx",
+        "./sidebarItems": "./src/components/sidebarItems",
+        "./ContentC": "./src/pages/ContentC",
+        "./ContentD": "./src/pages/ContentD",
       },
       shared: {
         ...deps,

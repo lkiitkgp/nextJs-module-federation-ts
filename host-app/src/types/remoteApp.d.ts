@@ -39,18 +39,37 @@ declare module "remoteApp/Sidebar" {
   export default Sidebar;
 }
 
-// declare module 'remoteApp/ContentA' {
+// declare module "remoteApp/ContentA" {
 //   const ContentA: React.ComponentType;
 //   export default ContentA;
 // }
 
-// declare module 'remoteApp/ContentB' {
+// declare module "remoteApp/ContentB" {
+//   const ContentB: React.ComponentType;
+//   export default ContentB;
+// }
+// declare module "reactApp/ContentC" {
+//   const ContentA: React.ComponentType;
+//   export default ContentA;
+// }
+
+// declare module "reactApp/ContentD" {
 //   const ContentB: React.ComponentType;
 //   export default ContentB;
 // }
 
 declare module "remoteApp/sidebarItems" {
   import { SidebarItem } from "remoteApp/Sidebar";
+
+  export const sidebarItems: SidebarItem[];
+}
+declare module "reactApp/sidebarItems" {
+  interface SidebarItem {
+    id: string;
+    name: string;
+    component: string;
+    path: string; // Include the path property
+  }
 
   export const sidebarItems: SidebarItem[];
 }
