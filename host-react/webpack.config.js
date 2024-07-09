@@ -12,9 +12,9 @@ module.exports = {
     },
   },
   cache: false,
-  //   output: {
-  //     publicPath: "http://localhost:3000/",
-  //   },
+  output: {
+    publicPath: "http://localhost:3000/",
+  },
   mode: "development",
   devtool: "source-map",
   optimization: {
@@ -25,10 +25,18 @@ module.exports = {
       directory: path.join(__dirname, "dist"),
     },
     port: 3000,
+    allowedHosts: "all",
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers":
+        "X-Requested-With, content-type, Authorization",
+    },
+    historyApiFallback: true,
   },
-  output: {
-    publicPath: "auto",
-  },
+  //   output: {
+  //     publicPath: "auto",
+  //   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json", ".mjs"],
   },
@@ -62,12 +70,15 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "reactApp",
+      name: "reactHost",
       filename: "remoteEntry.js",
       remotes: {
         remoteApp:
           "remoteApp@http://localhost:3001/_next/static/chunks/remoteEntry.js",
         reactApp: "reactApp@http://localhost:3002/remoteEntry.js",
+      },
+      exposes: {
+        // "./Sidebar": "./src/components/Sidebar",
       },
       shared: {
         // ...deps,
