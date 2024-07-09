@@ -6,6 +6,9 @@ const nextConfig = {
       new NextFederationPlugin({
         name: "remoteApp",
         filename: "static/chunks/remoteEntry.js",
+        remotes: {
+          // reactHost: "reactHost@http://localhost:3000/remoteEntry.js",
+        },
         exposes: {
           "./RemoteComponent": "./src/components/RemoteComponent.tsx",
           "./Sidebar": "./src/components/Sidebar",
