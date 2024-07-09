@@ -1,5 +1,5 @@
 declare module "remoteApp/RemoteComponent" {
-  import { ComponentType } from "react";
+  import { ComponentType, ComponentType } from "react";
 
   interface RemoteComponentProps {
     value: number;
@@ -11,7 +11,12 @@ declare module "remoteApp/RemoteComponent" {
 }
 
 declare module "reactApp/ReactComponent" {
-  const ReactComponent: React.ComponentType;
+  import { ComponentType } from "react";
+  interface ReactComponentProps {
+    value: number;
+    onIncrement: () => void;
+  }
+  const ReactComponent: ComponentType<ReactComponentProps>;
   export default ReactComponent;
 }
 

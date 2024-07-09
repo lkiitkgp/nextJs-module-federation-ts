@@ -10,11 +10,17 @@ const ReactComponent = dynamic(() => import("reactApp/ReactComponent"), {
 });
 
 const ReactAppPage: React.FC = () => {
+  const [value, setValue] = useState(0);
+
+  const handleIncrement = () => {
+    setValue(value + 1);
+  };
+
   return (
     <ErrorBoundary>
       <div>
         <Link href="/">Back to Home</Link>
-        <ReactComponent />
+        <ReactComponent value={value} onIncrement={handleIncrement} />
       </div>
     </ErrorBoundary>
   );
