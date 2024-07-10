@@ -12,9 +12,9 @@ module.exports = {
     },
   },
   cache: false,
-  output: {
-    publicPath: "http://localhost:3003/",
-  },
+  // output: {
+  //   publicPath: "http://localhost:3003/",
+  // },
   mode: "development",
   devtool: "source-map",
   optimization: {
@@ -22,7 +22,7 @@ module.exports = {
   },
   devServer: {
     static: {
-      directory: path.join(__dirname, "dist"),
+      directory: path.join(__dirname, "public"),
     },
     port: 3003,
     allowedHosts: "all",

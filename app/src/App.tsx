@@ -13,7 +13,7 @@ function App() {
   return (
     <div>
       <RemoteSidebar onSelect={handleSelect} />
-      <h1 className="text-3xl font-bold underline text-red-600">
+      <h1 className="text-3xl font-bold underline text-apiportal-panel-header-bg">
         Simple React Typescript Tailwind Sample
       </h1>
     </div>
