@@ -5,13 +5,15 @@ const path = require("path");
 const deps = require("./package.json").dependencies;
 
 module.exports = {
+  entry: "./src/index",
   entry: {
     app: {
       import: "./src/index",
     },
   },
+  cache: false,
   output: {
-    publicPath: "http://localhost:3002/",
+    publicPath: "http://localhost:3003/",
   },
   mode: "development",
   devtool: "source-map",
@@ -22,7 +24,7 @@ module.exports = {
     static: {
       directory: path.join(__dirname, "dist"),
     },
-    port: 3002,
+    port: 3003,
     allowedHosts: "all",
     headers: {
       "Access-Control-Allow-Origin": "*",
@@ -32,6 +34,9 @@ module.exports = {
     },
     historyApiFallback: true,
   },
+  // output: {
+  //   publicPath: "auto",
+  // },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json", ".mjs"],
   },
@@ -39,7 +44,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: ["style-loader", "css-loader", "postcss-loader"],
         exclude: /node_modules/,
       },
       {
@@ -65,20 +70,23 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "reactApp",
+      name: "host",
       filename: "remoteEntry.js",
-      exposes: {
-        "./ReactComponent": "./src/components/ReactComponent.tsx",
-        "./sidebarItems": "./src/components/sidebarItems",
-        "./ContentC": "./src/pages/ContentC",
-        "./ContentD": "./src/pages/ContentD",
+      remotes: {
+        remoteApp:
+          "remoteApp@http://localhost:3001/_next/static/chunks/remoteEntry.js",
+        reactApp: "reactApp@http://localhost:3002/remoteEntry.js",
       },
+      //   exposes: {
+      //     "./TemplatePage": "./src/pages/TemplatePage",
+      //     "./SidebarContainer": "./src/components/SidebarContainer",
+      //   },
       shared: {},
       runtime: false,
     }),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
-      publicPath: "/",
+      //   publicPath: "/",
     }),
   ],
 };

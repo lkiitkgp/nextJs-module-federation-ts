@@ -12,15 +12,9 @@ module.exports = {
     },
   },
   cache: false,
-<<<<<<< HEAD
   output: {
     publicPath: "http://localhost:3000/",
   },
-=======
-    output: {
-      publicPath: "http://localhost:3000/",
-    },
->>>>>>> d76bac2 (add layout)
   mode: "development",
   devtool: "source-map",
   optimization: {
@@ -40,15 +34,9 @@ module.exports = {
     },
     historyApiFallback: true,
   },
-<<<<<<< HEAD
-  //   output: {
-  //     publicPath: "auto",
-  //   },
-=======
   // output: {
   //   publicPath: "auto",
   // },
->>>>>>> d76bac2 (add layout)
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json", ".mjs"],
   },
@@ -91,18 +79,10 @@ module.exports = {
       },
       exposes: {
         "./TemplatePage": "./src/pages/TemplatePage",
+        "./SidebarContainer": "./src/components/SidebarContainer",
       },
-      shared: {
-        // ...deps,
-        // react: {
-        //   requiredVersion: '18.3.1',
-        //   singleton: true,
-        // },
-        // "react-dom": {
-        //   requiredVersion: '18.3.1',
-        //   singleton: true,
-        // },
-      },
+      shared: {},
+      runtime: false,
     }),
     new HtmlWebpackPlugin({
       template: "./public/index.html",

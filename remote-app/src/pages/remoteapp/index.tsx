@@ -1,6 +1,6 @@
 // src/pages/RemoteApp.tsx
 import Content from "@/components/Content";
-import Sidebar from "@/components/Sidebar2";
+import RemoteSidebar from "@/components/RemoteSidebar";
 import dynamic from "next/dynamic";
 import React, { useState } from "react";
 
@@ -19,7 +19,7 @@ const RemoteApp: React.FC = () => {
   return (
     <React.Suspense fallback="Loading...">
       <TemplatePage>
-        <Sidebar onSelect={handleSelect} />
+        <RemoteSidebar onSelect={handleSelect} />
         <Content item={selectedItem} />
       </TemplatePage>
     </React.Suspense>

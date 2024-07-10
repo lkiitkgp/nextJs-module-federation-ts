@@ -6,30 +6,23 @@ const nextConfig = {
       new NextFederationPlugin({
         name: "remoteApp",
         filename: "static/chunks/remoteEntry.js",
-        remotes: {
-          // reactHost: "reactHost@http://localhost:3000/remoteEntry.js",
-        },
+        // remotes: {
+        //   // reactHost: "reactHost@http://localhost:3000/remoteEntry.js",
+        // },
         exposes: {
           "./RemoteComponent": "./src/components/RemoteComponent.tsx",
           "./Sidebar": "./src/components/Sidebar",
+          "./RemoteSidebar": "./src/components/RemoteSidebar",
           "./ContentA": "./src/pages/ContentA",
           "./ContentB": "./src/pages/ContentB",
           "./sidebarItems": "./src/components/sidebarItems",
-          "./RemoteApp": "./src/pages/remoteapp/index"
+          "./RemoteApp": "./src/pages/remoteapp/index.tsx",
         },
         remotes: {
-          host : "host@http://localhost:3000/remoteEntry.js",
+          host: "host@http://localhost:3000/remoteEntry.js",
         },
-        shared: {
-        //   react: {
-        //     singleton: true,
-        //     requiredVersion: '18.3.1',
-        //   },
-        //   "react-dom": {
-        //     singleton: true,
-        //     requiredVersion: '18.3.1',
-        //   },
-        },
+        shared: {},
+        runtime: false,
       })
     );
     return config;

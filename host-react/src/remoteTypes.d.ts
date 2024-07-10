@@ -1,7 +1,7 @@
 /// <reference types="react" />
 
 declare module "remoteApp/RemoteComponent" {
-  import { ComponentType, ComponentType } from "react";
+  import { ComponentType, ComponentType, ComponentType } from "react";
 
   interface RemoteComponentProps {
     value: number;
@@ -25,4 +25,14 @@ declare module "reactApp/ReactComponent" {
 declare module "remoteApp/RemoteApp" {
   const RemoteApp: React.ComponentType;
   export default RemoteApp;
+}
+
+declare module "remoteApp/RemoteSidebar" {
+  import { ComponentType } from "react";
+  interface RemoteSidebarProps {
+    onSelect: (item: string) => void;
+  }
+
+  const RemoteSidebar: ComponentType<RemoteSidebarProps>;
+  export default RemoteSidebar;
 }

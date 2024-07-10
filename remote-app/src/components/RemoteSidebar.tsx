@@ -1,11 +1,11 @@
 // src/components/Sidebar.tsx
 import React from "react";
 
-interface SidebarProps {
+interface RemoteSidebarProps {
   onSelect: (item: string) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ onSelect }) => {
+const RemoteSidebar: React.FC<RemoteSidebarProps> = ({ onSelect }) => {
   return (
     <div>
       <div onClick={() => onSelect("item1")}>Item 1</div>
@@ -15,4 +15,4 @@ const Sidebar: React.FC<SidebarProps> = ({ onSelect }) => {
   );
 };
 
-export default Sidebar;
+export default RemoteSidebar;
