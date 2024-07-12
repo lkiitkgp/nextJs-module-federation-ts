@@ -2,21 +2,15 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin =
   require("webpack").container.ModuleFederationPlugin;
 const path = require("path");
-const deps = require("./package.json").dependencies;
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  entry: {
-    app: {
-      import: "./src/index",
-    },
-  },
-  output: {
-    publicPath: "http://localhost:3002/",
-  },
   mode: "development",
-  devtool: "source-map",
-  optimization: {
-    minimize: false,
+  entry: path.resolve(__dirname, "src", "index.tsx"),
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "[name].bundle.js",
+    // publicPath: "http://localhost:3002/",
   },
   devServer: {
     static: {
@@ -39,8 +33,16 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
-        exclude: /node_modules/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+          "sass-loader",
+        ],
       },
       {
         test: /\.svg$/,
@@ -54,11 +56,17 @@ module.exports = {
       //     },
       //   },
       {
-        test: /\.tsx?$/,
-        loader: "babel-loader",
+        test: /\.(ts|tsx|js|jsx)$/,
         exclude: /node_modules/,
-        options: {
-          presets: ["@babel/preset-react", "@babel/preset-typescript"],
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: [
+              "@babel/preset-env",
+              "@babel/preset-react",
+              "@babel/preset-typescript",
+            ],
+          },
         },
       },
     ],
@@ -73,12 +81,15 @@ module.exports = {
         "./ContentC": "./src/pages/ContentC",
         "./ContentD": "./src/pages/ContentD",
       },
-      shared: {},
-      runtime: false,
+      shared: ["react", "react-dom"],
     }),
+    new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
-      publicPath: "/",
+      filename: "index.html",
     }),
   ],
+  optimization: {
+    splitChunks: false,
+  },
 };

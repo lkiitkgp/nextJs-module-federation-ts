@@ -19,6 +19,7 @@ const RemoteApp: React.FC = () => {
   return (
     <React.Suspense fallback="Loading...">
       <TemplatePage>
+        {/* <h1 className="bg-input-border-hover">hello</h1> */}
         <RemoteSidebar onSelect={handleSelect} />
         <Content item={selectedItem} />
       </TemplatePage>

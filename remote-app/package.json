@@ -10,7 +10,10 @@
   },
   "dependencies": {
     "@module-federation/nextjs-mf": "^8.3.26",
+    "css-loader": "^7.1.2",
+    "mini-css-extract-plugin": "^2.9.0",
     "next": "14.2.4",
+    "postcss-loader": "^8.1.1",
     "react": "^18",
     "react-dom": "^18",
     "webpack": "^5.92.1"
@@ -22,7 +25,7 @@
     "cross-env": "^7.0.3",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
-    "postcss": "^8",
+    "postcss": "^8.4.39",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }

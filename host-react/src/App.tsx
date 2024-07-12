@@ -21,8 +21,8 @@ function App() {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <div className="flex h-screen bg-blue-800">
-        <div className="w-1/4 p-4 bg-blue-800 text-white">
+      <div className="flex h-screen">
+        <div className="w-1/4 p-4 bg-gray-800 text-white">
           <RemoteSidebar onSelect={handleSelect} />
         </div>
         <div className="flex-1 p-4">

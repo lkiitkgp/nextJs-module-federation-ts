@@ -2,21 +2,30 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin =
   require("webpack").container.ModuleFederationPlugin;
 const path = require("path");
+const deps = require("./package.json").dependencies;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
+  entry: "./src/index",
+  entry: {
+    app: {
+      import: "./src/index",
+    },
+  },
+  cache: false,
+  //   output: {
+  //     publicPath: "http://localhost:3004/",
+  //   },
   mode: "development",
-  entry: path.resolve(__dirname, "src", "index.tsx"),
-  output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "[name].bundle.js",
+  devtool: "source-map",
+  optimization: {
+    minimize: false,
   },
   devServer: {
     static: {
-      directory: path.join(__dirname, "public"),
+      directory: path.join(__dirname, "dist"),
     },
-    open: true,
-    port: 3003,
+    port: 3004,
     allowedHosts: "all",
     headers: {
       "Access-Control-Allow-Origin": "*",
@@ -26,22 +35,21 @@ module.exports = {
     },
     historyApiFallback: true,
   },
+  // output: {
+  //   publicPath: "auto",
+  // },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json", ".mjs"],
   },
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
-      },
-      {
-        test: /\.s[ac]ss$/i,
+        test: /\.(css|s[ac]ss)$/i,
         use: [
           MiniCssExtractPlugin.loader,
           "css-loader",
+          //   "style-loader",
           "postcss-loader",
-          "sass-loader",
         ],
       },
       //   {
@@ -56,44 +64,31 @@ module.exports = {
       //     },
       //   },
       {
-        test: /\.(ts|tsx|js|jsx)$/,
+        test: /\.tsx?$/,
+        loader: "babel-loader",
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: [
-              "@babel/preset-env",
-              "@babel/preset-react",
-              "@babel/preset-typescript",
-            ],
-          },
+        options: {
+          presets: ["@babel/preset-react", "@babel/preset-typescript"],
         },
       },
     ],
   },
   plugins: [
-    new ModuleFederationPlugin({
-      name: "host",
-      filename: "remoteEntry.js",
-      remotes: {
-        remoteApp:
-          "remoteApp@http://localhost:3001/_next/static/chunks/remoteEntry.js",
-        reactApp: "reactApp@http://localhost:3002/remoteEntry.js",
-        reactTApp: "reactTApp@http://localhost:3004/remoteEntry.js",
-      },
-      //   exposes: {
-      //     "./TemplatePage": "./src/pages/TemplatePage",
-      //     "./SidebarContainer": "./src/components/SidebarContainer",
-      //   },
-      shared: ["react", "react-dom"],
+    new MiniCssExtractPlugin({
+      filename: "[name].[contenthash].css",
     }),
-    new MiniCssExtractPlugin(),
+    new ModuleFederationPlugin({
+      name: "reactTApp",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./ReactComponentT": "./src/components/ReactComponentT.tsx",
+      },
+      shared: {},
+      runtime: false,
+    }),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
-      filename: "index.html",
+      //   publicPath: "/",
     }),
   ],
-  optimization: {
-    splitChunks: false,
-  },
 };
